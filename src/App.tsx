@@ -1,64 +1,57 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import './App.css'
-import styled from 'styled-components'
 import axios from 'axios'
 import { countries } from './Interfaces'
+import { Homepage } from './pages/Homepage'
+import { Routes, Route, Link } from 'react-router-dom'
+import { Country } from './pages/Country'
+import styled, { ThemeProvider } from 'styled-components'
+
 
 function App() {
 
   const [data, setData] = useState<countries[]>([])
+  const [dark, setDark] = useState<boolean>(false)
 
-  // const fetchData = () => {
-  //   axios.get('https://restcountries.com/v3.1/all')
-  //     .then(res => {
-  //       setData(res.data)
-  //     })
-  // }
+  const darkTheme = {
+    text: '#fff',
+    header: '#2B3844',
+    body: '#202C36',
+    svg: 'brightness(100%)'
+  }
 
-  useEffect(() => {
+  const lightTheme = {
+    text: '#111517',
+    header: "#fff",
+    body: '#f2f2f2',
+    svg: 'brightness(10%)'
+
+  }
+
+  useLayoutEffect(() => {
     axios.get('https://restcountries.com/v2/all')
       .then(res => {
         setData(res.data)
       })
   }, [])
 
+
+
   return (
-    <Wrapper>
-      {/* <Card>
-        <img />
-        <h4>name</h4>
-        <h6>Population</h6>
-        <h6>region</h6>
-        <h6>capital</h6>
-      </Card> */}
-
-
-      {data.map((item) => {
-        return (<Card>
-          <img src={item.flags.svg} />
-          <h4>{item.name}</h4>
-          <h6>{item.capital}</h6>
-          <h6>{item.population}</h6>
-          <h6>{item.region}</h6>
-        </Card>)
-      })}
-
-    </Wrapper>
+    <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Homepage dark={dark} setDark={setDark} data={data} />} />
+          <Route path="/country/:countryName" element={<Country dark={dark} setDark={setDark} data={data} />} />
+        </Routes>
+      </Container>
+    </ThemeProvider>
   )
 }
 
 export default App
 
-const Square = styled.div`
-  width: 100px;
-  height: 50px;
-  background-color: red;
+const Container = styled.div`
+    background-color: ${props => props.theme.body};
+    transition: .5s;
 `
-const Wrapper = styled.div`
-  flex-wrap: wrap;
-`
-
-const Card = styled.div`
-  border: 2px solid red;
-`
-

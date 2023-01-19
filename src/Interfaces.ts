@@ -8,3 +8,8 @@ export interface countries {
     region: string;
 
 }
+
+export interface darkIntFace {
+    dark: boolean;
+    setDark: React.Dispatch<React.SetStateAction<boolean>>;
+}
