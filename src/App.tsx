@@ -1,7 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from 'react'
 import './App.css'
 import axios from 'axios'
-import { countries } from './Interfaces'
+import { countries, Theme } from './Interfaces'
 import { Homepage } from './pages/Homepage'
 import { Routes, Route, Link } from 'react-router-dom'
 import { Country } from './pages/Country'
@@ -13,20 +13,20 @@ function App() {
   const [data, setData] = useState<countries[]>([])
   const [dark, setDark] = useState<boolean>(false)
 
-  const darkTheme = {
+  const darkTheme: Theme = {
     text: '#fff',
     header: '#2B3844',
     body: '#202C36',
     svg: 'brightness(100%)'
   }
 
-  const lightTheme = {
+  const lightTheme: Theme = {
     text: '#111517',
     header: "#fff",
     body: '#f2f2f2',
     svg: 'brightness(10%)'
-
   }
+
 
   useLayoutEffect(() => {
     axios.get('https://restcountries.com/v2/all')

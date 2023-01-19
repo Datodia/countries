@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { countries, darkIntFace } from '../Interfaces'
+import { countries, darkIntFace, Theme } from '../Interfaces'
 import { Header } from '../Components/Header'
 
 
@@ -62,7 +62,6 @@ const Img = styled.img`
     width: 100%;
 `
 const Card = styled(Link)`
-  border: 2px solid red;
   display: block;
   color: ${props => props.theme.text};
   width: 264px;
@@ -72,6 +71,8 @@ const Card = styled(Link)`
   text-decoration: none;
   transition: .5s;
   cursor: pointer;
+  padding-bottom: 15px;
+  border-radius: 7px;
 `
 
 const InputDiv = styled.div`
@@ -122,11 +123,11 @@ const Region = styled(Filter)`
     align-items: flex-start;
 `
 
-const Arrow = styled.img<show>`
-    transform: ${props => props.show ? 'rotate(180deg)' : 'rotate(0deg)'};
+const Arrow = styled.img((props: { show: boolean, theme: Theme }) => `
+    transform: ${props.show ? 'rotate(180deg)' : 'rotate(0deg)'};
     transition: .5s;
-    filter: ${props => props.theme.svg};
-`
+    filter: ${props.theme.svg};
+`)
 
 const RegionName = styled.h2`
     font-size: 12px;
@@ -137,6 +138,7 @@ const RegionName = styled.h2`
 const CountryName = styled.h4`
     font-size: 18px;
     font-weight: 800;
+    margin-bottom: 10px;
 `
 const Population = styled.h4`
     font-size: 14px;
@@ -144,4 +146,5 @@ const Population = styled.h4`
 `
 const Texts = styled.div`
     padding: 0 24px;
+    margin-top: 20px;
 `
