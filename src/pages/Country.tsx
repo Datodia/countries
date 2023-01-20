@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 export const Country = ({ data, dark, setDark }: { data: countries[], dark: boolean, setDark: React.Dispatch<React.SetStateAction<boolean>> }) => {
     const { countryName } = useParams()
-    console.log(data)
     return (
         <>
             <Header dark={dark} setDark={setDark} />
@@ -61,10 +60,10 @@ export const Country = ({ data, dark, setDark }: { data: countries[], dark: bool
                                     </LeftDiv>
                                 </ResultDiv>
                                 <BorderDiv>
-                                    <Text>Borders:</Text>
-                                    <Div style={{ justifyContent: 'space-between', marginTop: 15 }}>
+                                    <Text>Border Countries:</Text>
+                                    <BordersDiv>
                                         {item.borders ? item.borders.map(el => <Borders>{el}</Borders>) : <ResultTxt>No border Countrty</ResultTxt>}
-                                    </Div>
+                                    </BordersDiv>
                                 </BorderDiv>
 
                             </TextDiv>
@@ -79,43 +78,92 @@ export const Country = ({ data, dark, setDark }: { data: countries[], dark: bool
 const Container = styled.div`
     width: 90%;
     margin: auto;
-    height: 100vh;
+    padding-bottom: 50px;
+    @media screen and (min-width: 900px) {
+        height: 100vh;
+    }
+    
 `
 
 const Card = styled.div`
     width: 100%;
     margin: auto;
     margin-top: 40px;
+    @media screen and (min-width: 900px) {
+        display: flex;
+        justify-content: space-between;
+        /* height: 40vh;
+        margin-top: 80px; */
+    }
+    @media screen and (min-width: 1200px) {
+        height: 45vh;
+        margin-top: 80px;
+    }
 `
 const Div = styled.div`
     display: flex;
     gap: 1%;
     margin-top: 5px;
+    @media screen and (min-width: 900px) {
+       gap: 3%;
+    }
 `
 const ResultTxt = styled.h2`
     font-size: 14px;
     font-weight: 400;
     color: ${props => props.theme.text};
     transition: .5s;
+    @media screen and (min-width: 900px) {
+        font-size: 16px;
+    }
+    @media screen and (min-width: 1200px) {
+        font-size: 18px;
+    }
 `
 
 const TextDiv = styled.div`
-    
+    @media screen and (min-width: 900px) {
+        width: 55%;
+    }
 `
 const ResultDiv = styled.div`
     margin-top: 30px;
+    @media screen and (min-width: 500px) {
+        display: flex;
+        justify-content: space-between;
+    }
 `
 const LeftDiv = styled.div`
     margin-top: 20px;
+    @media screen and (min-width: 480px) {
+        width: 50%;
+    }
 `
 
 const BorderDiv = styled(Div)`
     flex-direction: column;
     margin-top: 20px;
+    @media screen and (min-width: 900px) {
+        flex-direction: row;
+        align-items: center;
+    }
+`
+const BordersDiv = styled(Div)`
+    margin-top: 15px;
+    justify-content: space-between;
+    @media screen and (min-width: 900px) {
+        margin-top: 0;
+    }
+    @media screen and (min-width: 1200px) {
+        gap: 30px;
+    }
 `
 
 const Img = styled.img`
     width: 100%;
+    @media screen and (min-width: 900px) {
+        width: 39%;
+    }
 `
 const Name = styled.h2`
     font-size: 22px;
@@ -123,11 +171,15 @@ const Name = styled.h2`
     color: ${props => props.theme.text};
     transition: .5s;
     margin-top: 30px;
+    @media screen and (min-width: 900px) {
+        font-size: 25px;
+    }
 `
 const Borders = styled.div`
     width: 40px;
     height: 20px;
     display: flex;
+    border-radius: 7px;
     align-items: center;
     justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -135,7 +187,11 @@ const Borders = styled.div`
     font-weight: 400;
     color: ${props => props.theme.text};
     transition: .5s;
-    background-color: ${props => props.theme.header}
+    background-color: ${props => props.theme.header};
+    @media screen and (min-width: 1200px) {
+        width: 70px;
+        height: 30px;
+    }
 `
 
 const Text = styled.h2`
@@ -143,10 +199,17 @@ const Text = styled.h2`
     font-weight: 700;
     color: ${props => props.theme.text};
     transition: .5s;
+    @media screen and (min-width: 900px) {
+        font-size: 16px;
+    }
+    @media screen and (min-width: 1200px) {
+        font-size: 18px;
+    }
 `
 
 const BackImg = styled.img`
-    
+    filter: ${props => props.theme.svg === 'brightness(100%)' ? 'brightness(100)' : ''};
+    transition: .5s;
 `
 
 const Back = styled(Link)`
@@ -161,10 +224,27 @@ const Back = styled(Link)`
     transition: .5s;
     justify-content: space-between;
     padding: 0 5px;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.1)
+    }
+    @media screen and (min-width: 900px) {
+        width: 13%;
+        height: 40px;
+        padding: 0 20px;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 10%;
+        height: 50px;
+    }
 `
 const BackTxt = styled.h5`
     font-size: 14px;
     font-weight: 300;
     color: ${props => props.theme.text};
     transition: .5s;
+    @media screen and (min-width: 1200px) {
+        font-size: 18px;
+    }
 `

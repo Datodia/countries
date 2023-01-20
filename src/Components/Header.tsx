@@ -24,6 +24,9 @@ const Wrapper = styled.div`
     justify-content: space-between;
     background-color: ${props => props.theme.header};
     transition: .5s;
+    @media screen and (min-width: 900px) {
+        padding: 0 5%;
+    }
 `
 
 const Logo = styled.h2`
@@ -31,12 +34,21 @@ const Logo = styled.h2`
     font-weight: 800;
     color: ${props => props.theme.text};
     transition: .5s;
+    @media screen and (min-width: 1200px) {
+        font-size: 18px;
+    }
 `
 
 const DarkDiv = styled.div`
     display: flex;
     align-items: center;
-    gap: 5px;  
+    gap: 5px; 
+    cursor: pointer;
+
+   
+    @media screen and (min-width: 1200px) {
+        gap: 15px
+    } 
 `
 const Img = styled.img<darkIntFace | any>`
     filter: ${props => props.theme.svg};
@@ -48,5 +60,7 @@ const DarkTxt = styled.h2`
     font-weight: 600;
     color: ${props => props.theme.text};
     transition: .5s;
-
+    @media screen and (min-width: 1200px) {
+        font-size: 16px;
+    }
 `
