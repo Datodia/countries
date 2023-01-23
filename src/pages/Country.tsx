@@ -13,7 +13,7 @@ export const Country = ({ data, dark, setDark }: { data: countries[], dark: bool
                     <BackImg src='/assets/back.svg' />
                     <BackTxt>Back</BackTxt>
                 </Back>
-                {data.filter((item) => item.name.includes(countryName || "")).map((item) => {
+                {data.filter((item) => item.name.startsWith(countryName || "")).map((item) => {
                     return (
                         <Card>
                             <Img src={item.flags.svg} />
@@ -39,7 +39,7 @@ export const Country = ({ data, dark, setDark }: { data: countries[], dark: bool
                                         </Div>
                                         <Div>
                                             <Text>Capital: </Text>
-                                            <ResultTxt>{item.capital}</ResultTxt>
+                                            {item.capital ? <ResultTxt>{item.capital}</ResultTxt> : <ResultTxt>No Capital city</ResultTxt>}
                                         </Div>
                                     </LeftDiv>
                                     <LeftDiv>

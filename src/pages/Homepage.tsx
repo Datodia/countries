@@ -34,7 +34,7 @@ export const Homepage = ({ data, dark, setDark }: { data: countries[], dark: boo
             </SearchDiv>
             {show &&
                 <Region>
-                    <RegionName onClick={() => { setRegion("Africa"), setShow(false) }}>AFrica</RegionName>
+                    <RegionName onClick={() => { setRegion("Africa"), setShow(false) }}>Africa</RegionName>
                     <RegionName onClick={() => { setRegion("America"), setShow(false) }}>America</RegionName>
                     <RegionName onClick={() => { setRegion("Asia"), setShow(false) }}>Asia</RegionName>
                     <RegionName onClick={() => { setRegion("Europe"), setShow(false) }}>Europe</RegionName>
@@ -51,7 +51,7 @@ export const Homepage = ({ data, dark, setDark }: { data: countries[], dark: boo
                                 <Texts>
                                     <CountryName>{item.name}</CountryName>
                                     <Population>Population: {item.population}</Population>
-                                    <Population>Capital: {item.capital}</Population>
+                                    {item.capital ? <Population>Capital: {item.capital}</Population> : <Population>Capital: No capital</Population>}
                                     <Population>Region: {item.region}</Population>
                                 </Texts>
                             </Card>
@@ -76,7 +76,7 @@ const CardDiv = styled.div`
     width: 90%;
     margin: auto;
     gap: 2vw;
-    padding-bottom: 50px;
+    padding-bottom: 300px;
 `
 const Error = styled.div`
     width: 100%;
